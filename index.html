@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image to Pencil Sketch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f3e5f5; /* light pastel lavender */
+        }
+        .container {
+            margin: auto;
+            width: 80%;
+        }
+        img {
+            max-width: 45%;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #aaa;
+        }
+        .btn {
+            padding: 10px 20px;
+            background: #6a1b9a; /* deep purple */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #4a148c;
+        }
+    </style>    
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ Pencil Sketch Converter</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" required>
+            <br><br>
+            <button type="submit" class="btn">Convert to Sketch</button>
+        </form>
+
+        {% if original_image %}
+            <h2>Result:</h2>
+            <div>
+                <img src="{{ original_image }}" alt="Original Image">
+                <img src="{{ sketch_image }}" alt="Pencil Sketch">
+            </div>
+            <a href="{{ url_for('download_file', filename=download_link) }}" class="btn">Download Sketch</a>
+        {% endif %}
+    </div>
+</body>
+</html>
